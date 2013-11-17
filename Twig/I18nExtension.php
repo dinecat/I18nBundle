@@ -119,6 +119,9 @@ class I18nExtension extends \Twig_Extension
      */
     protected function parseKey($key)
     {
+        if (mb_strpos($key, '.') === false) {
+            $key = 'messages.' . $key;
+        }
         list ($dict, $index) = explode('.', $key, 2);
         if (!$index) {
             return false;
